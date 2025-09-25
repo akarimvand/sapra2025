@@ -48,12 +48,6 @@
       border: 1px solid rgba(60, 100, 180, 0.3);
       transform-style: preserve-3d;
       perspective: 1000px;
-      animation: float 6s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0) rotateX(0deg) rotateY(0deg); }
-      50% { transform: translateY(-15px) rotateX(5deg) rotateY(5deg); }
     }
 
     .logo {
@@ -213,26 +207,6 @@
         shininess: 35.00,
         waveHeight: 15.00,
         waveSpeed: 0.80
-      });
-
-      // Add 3D tilt effect
-      const container = document.querySelector('.container');
-      document.addEventListener('mousemove', function(e) {
-        let x = e.clientX;
-        let y = e.clientY;
-        
-        let centerX = window.innerWidth / 2;
-        let centerY = window.innerHeight / 2;
-        
-        let percentX = (x - centerX) / centerX;
-        let percentY = (y - centerY) / centerY;
-        
-        const radius = 20;
-        container.style.transform = `perspective(1000px) rotateX(${percentY * -radius}deg) rotateY(${percentX * radius}deg)`;
-      });
-
-      document.addEventListener('mouseleave', function() {
-        container.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
       });
 
       // Handle login
