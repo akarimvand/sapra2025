@@ -810,6 +810,12 @@ function handleNodeSelect(type, id, name, parentId = null) {
     updateView();
 }
 
+function destroyChart(chartInstance) {
+    if (chartInstance) {
+        chartInstance.destroy();
+    }
+}
+
 function renderCharts() {
     destroyChart(chartInstances.overview);
     Object.values(chartInstances.disciplines).forEach(destroyChart);
