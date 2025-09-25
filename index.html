@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa" dir="rtl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SAPRA | Smart Access to Project Activities</title>
+  <title>سپرا | سامانه هوشمند پیشرفت ریالی و اجرایی</title>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js"></script>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap');
 
     * {
       margin: 0;
@@ -16,7 +17,7 @@
     }
 
     body {
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Vazirmatn', sans-serif;
       background: #0f162f;
       color: #ffffff;
       overflow: hidden;
@@ -75,6 +76,7 @@
     .form-group {
       margin-bottom: 25px;
       position: relative;
+      text-align: right;
     }
 
     .form-group label {
@@ -95,6 +97,7 @@
       font-size: 1rem;
       transition: all 0.3s ease;
       outline: none;
+      font-family: 'Vazirmatn', sans-serif;
     }
 
     .form-group input:focus {
@@ -117,6 +120,7 @@
       box-shadow: 0 5px 15px rgba(30, 87, 153, 0.5);
       position: relative;
       overflow: hidden;
+      font-family: 'Vazirmatn', sans-serif;
     }
 
     .btn:hover {
@@ -174,22 +178,22 @@
   <div id="vanta-bg"></div>
   <div class="container">
     <div class="logo">
-      <img src="images/SAPRA_WHITE-100.png" alt="SAPRA Logo" />
-      <p>Smart Access to Project Activities</p>
+      <img src="images/SAPRA_WHITE-100.png" alt="لوگوی سپرا" />
+      <p>سامانه هوشمند پیشرفت ریالی و اجرایی</p>
     </div>
     <form id="loginForm">
       <div class="form-group">
-        <label for="username">Username</label>
+        <label for="username">نام کاربری</label>
         <input type="text" id="username" value="Sapra_Sabalan2" readonly required />
       </div>
       <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" placeholder="Enter your password" required />
+        <label for="password">رمز عبور</label>
+        <input type="password" id="password" placeholder="رمز عبور خود را وارد کنید" required />
       </div>
-      <button type="submit" class="btn">Log In</button>
+      <button type="submit" class="btn">ورود</button>
     </form>
     <div class="footer">
-      <p>© 2025 SAPRA. Developed by <a href="mailto:akarimvand@gmail.com">Amin Naseri Karimvand</a></p>
+      <p>© 1403 سپرا. توسعه داده شده توسط <a href="mailto:akarimvand@gmail.com">امین ناصری کریم وند</a></p>
     </div>
   </div>
 
@@ -213,9 +217,6 @@
 
       // Add 3D tilt effect
       const container = document.querySelector('.container');
-      const radius = 30;
-      const depth = 30;
-
       document.addEventListener('mousemove', function(e) {
         let x = e.clientX;
         let y = e.clientY;
@@ -226,6 +227,7 @@
         let percentX = (x - centerX) / centerX;
         let percentY = (y - centerY) / centerY;
         
+        const radius = 20;
         container.style.transform = `perspective(1000px) rotateX(${percentY * -radius}deg) rotateY(${percentX * radius}deg)`;
       });
 
@@ -246,7 +248,15 @@
         if (username === "Sapra_Sabalan2" && password === "1234") {
           window.location.href = "main.html";
         } else {
-          alert("Invalid password. Please try again.");
+          Swal.fire({
+            title: 'خطا!',
+            text: 'رمز عبور نامعتبر است. لطفا دوباره تلاش کنید.',
+            icon: 'error',
+            confirmButtonText: 'باشه',
+            customClass: {
+                popup: 'vazir-font'
+            }
+          });
           passwordInput.value = "";
         }
       });
